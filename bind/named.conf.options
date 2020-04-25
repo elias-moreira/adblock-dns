@@ -1,0 +1,36 @@
+acl autorizados {
+        127.0.0.1;
+        192.168.0.0/16;
+        172.16.0.0/12;
+        100.64.0.0/10;
+        10.0.0.0/8;
+};
+ 
+options {
+    directory "/var/cache/bind";
+ 
+    dnssec-enable yes;
+    dnssec-validation auto;
+ 
+    auth-nxdomain no;
+ 
+    listen-on { any; };
+    listen-on-v6 { none; };
+    response-policy {
+	zone "rpz.zone" policy CNAME bloqueio.example.com;
+    };
+	 
+    minimal-responses yes;
+ 
+    allow-recursion {
+        autorizados;
+    };
+ 
+    allow-query-cache {
+        autorizados;
+    };
+ 
+    allow-query { any; };
+ 
+    version "MY Local DNS Server";
+};
