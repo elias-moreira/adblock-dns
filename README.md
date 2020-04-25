@@ -1,10 +1,14 @@
 # adblock-dns
 Bloqueio de anúncios via DNS usando BIND9
 
-#1 Instalar o Bind9
+Instalação:
 
-_apt install bind9 dnsutils_
+git clone https://github.com/phvilasboas/adblock-dns.git
 
-.....
+cd adblock-dns/
 
-Publicarei o restante do código em breve
+chmod +x install.sh
+
+./install.sh
+
+Apos a instalação, mudar o 	_zone "rpz.zone" policy CNAME_  no arquivo named.conf.options para um domínio valido ou um proprio dns local.
